@@ -1,6 +1,8 @@
 
 import tweepy as tw
+import os
 
+#Es necesario rellenar los siguientes datos con la información de una cuenta activa
 api_key = ''
 api_key_secret = ''
 access_token = ''
@@ -26,7 +28,6 @@ api.create_friendship(screen_name='generic_name')
 #Twitear
 api.update_status("Generic tweet")
 
-
 #Likear 10 tweets de la timeline
 tweets_home= api.home_timeline(count=10)
 for tweet in tweets_home:
@@ -35,14 +36,12 @@ for tweet in tweets_home:
             print(f"Liking this tweet from ({tweet.author.name})")
             api.create_favorite(tweet.id)
             
-
 #Buscar usuario y likear ultimos tweets
 user= api.get_user(screen_name='generic_name')
 user_tweets=api.user_timeline(user_id=user.id)
 for tweet in user_tweets:
     if not tweet.favorited:
        api.create_favorite(tweet.id)  
-
 
 #Busca e imprime por contenido de tweet
 tweets=api.search_tweets( q='generic_search', count=10)
